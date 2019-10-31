@@ -16,14 +16,14 @@
 #########################################################################################
 
 #set working directory to the location where the UCI HAR Dataset was unzipped
-setwd("X:/DataScience/JohnHopkinsUniversity/datasciencecoursera/Week4_Project_wearables");
+setwd("X:/DataScience/JohnHopkinsUniversity/Week4Project10312019-master/Week4Project");
 
 
 # 1. Merge training and test sets to create one data set.
 
 # Import features and activity data from files
 features     = read.table('./features.txt',header=F);
-activityType = read.table('./activity_labels.txt',header=F);
+activityLabel = read.table('./activity_labels.txt',header=F);
 
 # Import Training data from files
 subjectTrain = read.table('./train/subject_train.txt',header=F);
@@ -31,13 +31,13 @@ xTrain       = read.table('./train/x_train.txt',header=F);
 yTrain       = read.table('./train/y_train.txt',header=F);
 
 # Assign Headers to Training and features/activity data
-colnames(activityType)  = c('activityId','activityType');
+colnames(activityLabel)  = c('activityId','activityType');
 colnames(subjectTrain)  = "subjectId";
 colnames(xTrain)        = features[,2];
 colnames(yTrain)        = "activityId";
 
-# Merging yTrain, subjectTrain, and xTrain dtat tables into a single trainingData table
-trainingData = cbind(yTrain,subjectTrain,xTrain);
+# Merging yTrain, subjectTrain, and xTrain dtat tables into a single trainData table
+trainData = cbind(yTrain,subjectTrain,xTrain);
 
 # Import test data
 subjectTest = read.table('./test/subject_test.txt',header=F);
@@ -55,18 +55,19 @@ testData = cbind(yTest,subjectTest,xTest);
 
 
 # Combine training and test data to create a final data set
-finalData = rbind(trainingData,testData);
+finalData = rbind(trainData,testData);
 
 # Create a vector of column names from finalData for getting mean() & stddev()
 colNames  = colnames(finalData);
 
 # 2. Extract measurements on mean and standard deviation for each observation
 
-# Built logicalVector with T & F values for the ID, mean() & stddev() columns
-logicalVector = (grepl("activity..",colNames) | grepl("subject..",colNames) | grepl("-mean..",colNames) & !grepl("-meanFreq..",colNames) & !grepl("mean..-",colNames) | grepl("-std..",colNames) & !grepl("-std()..-",colNames));
+# Built TFVector with T & F values for the ID, mean() & stddev() columns
+# Use grepl() to generate a vector of logicals
+TFVector = (grepl("activity..",colNames) | grepl("subject..",colNames) | grepl("-mean..",colNames) & !grepl("-meanFreq..",colNames) & !grepl("mean..-",colNames) | grepl("-std..",colNames) & !grepl("-std()..-",colNames));
 
-# Subset finalData table based on the logicalVector to keep only desired columns
-finalData = finalData[logicalVector==T];
+# Subset finalData table based on the TFVector to keep only desired columns
+finalData = finalData[TFVector==T];
 
 # 3. Use descriptive names on data set activities, merging finalData with
 # activityType by activityId
