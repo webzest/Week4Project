@@ -10,10 +10,10 @@
 # 1. Merge training and test sets.
 # 2. Extract measurements on mean and standard deviation on each observation
 # 3. Use descriptive names on data set activities
-# 4. Label data sets with descriptive activity names.
+# 4. Update Column Names with descriptive activity names.
 # 5. Create a second, independent tidy data set with averages, activity and subject.
 
-#########################################################################################
+########################################################################################
 
 #set working directory to the location where the UCI HAR Dataset was unzipped
 setwd("X:/DataScience/JohnHopkinsUniversity/Week4Project10312019-master/Week4Project");
@@ -77,15 +77,16 @@ finalData = merge(finalData,activityType,by='activityId',all.x=T);
 # Update colNames vector with finalData
 colNames  = colnames(finalData);
 
-# 4. Label data sets with descriptive activity names.
+# 4. Update column Names with descriptive activity names.
+# Utilizing gsub to scrub or replace criptic with descriptive names
 
 for (i in 1:length(colNames))
 {
   colNames[i] = gsub("\\()","",colNames[i])
-  colNames[i] = gsub("-std$","StdDev",colNames[i])
+  colNames[i] = gsub("-std$","StdDeviation",colNames[i])
   colNames[i] = gsub("-mean","Mean",colNames[i])
-  colNames[i] = gsub("^(t)","time",colNames[i])
-  colNames[i] = gsub("^(f)","freq",colNames[i])
+  colNames[i] = gsub("^(t)","Time",colNames[i])
+  colNames[i] = gsub("^(f)","frequency",colNames[i])
   colNames[i] = gsub("([Gg]ravity)","Gravity",colNames[i])
   colNames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)","Body",colNames[i])
   colNames[i] = gsub("[Gg]yro","Gyro",colNames[i])
@@ -94,9 +95,6 @@ for (i in 1:length(colNames))
   colNames[i] = gsub("JerkMag","JerkMagnitude",colNames[i])
   colNames[i] = gsub("GyroMag","GyroMagnitude",colNames[i])
 };
-
-# Reassigning the new descriptive column names to the finalData set
-colnames(finalData) = colNames;
 
 # 5. Create a second, independent tidy data set with averages, activity and subject.
 
@@ -113,4 +111,4 @@ tidyData    = aggregate(
 tidyData    = merge(tidyData,activityType,by='activityId',all.x=T);
 
 # Export the tidyData set
-write.table(tidyData, './tidyDataSet.txt', row.name=FALSE)
+write.table(tidyData, './tidyDataSet.txt', row.names=FALSE, sep = "\t", col.names = colNames)
