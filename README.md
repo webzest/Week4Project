@@ -2,10 +2,12 @@
 Johnny Sandaire
 John Hopkins University Data Cleaning / Week 4 Project Repository
 
-# Description of runAnalysis.r components:
-
-# This script will perform the following steps on the UCI HAR Dataset downloaded from
+# The runAnalysis.R script will perform five pricipal steps on the UCI HAR Dataset downloaded from
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+The CodeBook.txt describes the variables and their original authors.
+
+# Description of runAnalysis.r components:
 
 1. Merge training and test sets.
 2. Extract measurements on mean and standard deviation on each observation
