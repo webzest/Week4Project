@@ -64,6 +64,32 @@ Notes:
 
 For more information about this dataset please contact: activityrecognition '@' smartlab.ws
 
+
+Final Tidy Data Set contains the following Variables:
+====================================================
+
+"activityId"
+"subjectId"
+"timeBodyAccMagnitudeMean"
+"timeBodyAccMagnitudeStdDeviation"
+"timeGravityAccMagnitudeMean"
+"timeGravityAccMagnitudeStdDeviation"
+"timeBodyAccJerkMagnitudeMean"
+"timeBodyAccJerkMagnitudeStdDeviation"
+"timeBodyGyroMagnitudeMean"
+"timeBodyGyroMagnitudeStdDeviation"
+"timeBodyGyroJerkMagnitudeMean"
+"timeBodyGyroJerkMagnitudeStdDeviation"
+"frequencyBodyAccMagnitudeMean"
+"frequencyBodyAccMagnitudeStdDeviation"
+"frequencyBodyAccJerkMagnitudeMean"
+"frequencyBodyAccJerkMagnitudeStdDeviation"
+"frequencyBodyGyroMagnitudeMean"
+"frequencyBodyGyroMagnitudeStdDeviation"
+"frequencyBodyGyroJerkMagnitudeMean"
+"frequencyBodyGyroJerkMagnitudeStdDeviation"
+"activityType"
+
 Other Related Publications:
 ===========================
 [2] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra, Jorge L. Reyes-Ortiz.  Energy Efficient Smartphone-Based Activity Recognition using Fixed-Point Arithmetic. Journal of Universal Computer Science. Special Issue in Ambient Assisted Living: Home Care.   Volume 19, Issue 9. May 2013
